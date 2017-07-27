@@ -1,0 +1,27 @@
+{
+	"name": "sketch-measure-chrome",
+	"version": "0.0.1",
+	"manifest_version": 2,
+	"description": "用于日事清的sketch measure插件",
+	"permissions": [
+		"tabs",
+		"bookmarks",
+		"history",
+		"clipboardRead",
+		"storage",
+		"sessions",
+		"notifications",
+		"webNavigation",
+		"<all_urls>"
+	],
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": [
+				"index.js"
+			],
+			"run_at": "document_start",
+      		"all_frames": true
+		}
+	]
+}
