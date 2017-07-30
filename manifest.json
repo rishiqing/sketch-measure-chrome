@@ -18,10 +18,14 @@
 		{
 			"matches": ["<all_urls>"],
 			"js": [
-				"index.js"
+				"index.js",
+				"statistics.js"
 			],
 			"run_at": "document_start",
       		"all_frames": true
 		}
+	],
+	"web_accessible_resources": [
+		"patch.js"
 	]
 }
