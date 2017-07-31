@@ -18,6 +18,11 @@
     });
   });
 
+  // 字体颜色的纠错映射关系
+  const TYPE_COLOR_MISTAKE_MAP = {
+    '51,51,51,1': TYPE_COLOR_RGBA['heavy-black'] // #333333其实都是#3d3d3d
+  };
+
   const TYPE_SIZE = { // 字号映射
     menu: 16,
     title: 14,
@@ -164,7 +169,15 @@
   };
 
   const layerText = function (layer) {
-    const color = layer.color;
+    const _c = layer.color;
+    const _rgba = [_c.r, _c.g, _c.b, _c.a].join(',');
+    let color;
+    if (TYPE_COLOR_MISTAKE_MAP[_rgba]) {
+      const _m = TYPE_COLOR_MISTAKE_MAP[_rgba];
+      color = { r: _m[0], g: _m[1], b: _m[2], a: _m[3] };
+    } else {
+      color = _c;
+    }
     const rgb = [color.r, color.g, color.b].join(',');
     const rgbMatchList = TYPE_COLOR_RGBA_LIST.filter(item => item.rgb === rgb);
     const rgbaMatchList = rgbMatchList.filter(item => item.a === color.a);
