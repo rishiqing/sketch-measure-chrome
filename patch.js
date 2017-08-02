@@ -60,6 +60,7 @@
       'common-color-5': [224, 224, 224, 1, '第五常用色，比如禁止按钮的背景色'],
       'common-color-6': [249, 249, 250, 1, '第六常用色，搜索框背景色，主体框架右下主体内容背景色，日程四象限背景色，很多偏灰一点点的背景色'],
       'common-color-7': [255, 255, 255, 1, '第七常用色，纯白色'],
+      'common-color-8': [244, 244, 244, 1, '第八常用色，用于白色item, hover时的背景色'],
       'common-color-danger': [255, 122, 122, 1, '警告提示色，比如警告按钮背景色']
     }
   };
@@ -75,6 +76,12 @@
       });
     });
   });
+
+  // 主题色的纠错映射关系
+  const THEME_COLOR_MISTAKE_MAP = {
+    '85,168,253,1': THEME_COLOR.skin0['btn-color-3'].slice(0, 4),
+    '176,176,176,1': THEME_COLOR.skin0['common-color-3'].slice(0, 4)
+  };
 
   // bgc是background-color, bc是border-color
   const BUTTON = { // 如果某个按钮和另外一个按钮的配置一样，可以直接把value配置成两一个按钮的key
@@ -149,6 +156,11 @@
           color = [r, g, b, a];
         }
       });
+    }
+    if (color) {
+      if (THEME_COLOR_MISTAKE_MAP[color.join(',')]) {
+        color = THEME_COLOR_MISTAKE_MAP[color.join(',')];
+      }
     }
     return color;
   };
