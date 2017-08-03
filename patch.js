@@ -80,7 +80,8 @@
   // 主题色的纠错映射关系
   const THEME_COLOR_MISTAKE_MAP = {
     '85,168,253,1': THEME_COLOR.skin0['btn-color-3'].slice(0, 4),
-    '176,176,176,1': THEME_COLOR.skin0['common-color-3'].slice(0, 4)
+    '176,176,176,1': THEME_COLOR.skin0['common-color-3'].slice(0, 4),
+    '0,0,0,0.04': THEME_COLOR.skin0['common-color-8'].slice(0, 4)
   };
 
   // bgc是background-color, bc是border-color
