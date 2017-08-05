@@ -22,7 +22,8 @@
   const TYPE_COLOR_MISTAKE_MAP = {
     '51,51,51,1': TYPE_COLOR_RGBA['heavy-black'], // #333333其实都是#3d3d3d
     '74,74,74,1': TYPE_COLOR_RGBA['normal-black'], // #4A4A4A用#666666
-    '0,0,0,1': TYPE_COLOR_RGBA['heavy-black'] // #000000用#3d3d3d
+    '0,0,0,1': TYPE_COLOR_RGBA['heavy-black'], // #000000用#3d3d3d
+    '86,152,219,1': TYPE_COLOR_RGBA['type-color-link'] // #5698DB 用 #1ba4ff
   };
 
   const TYPE_SIZE = { // 字号映射
