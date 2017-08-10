@@ -18,13 +18,19 @@
     });
   });
 
-  // 字体颜色的纠错映射关系
-  const TYPE_COLOR_MISTAKE_MAP = {
-    '51,51,51,1': TYPE_COLOR_RGBA['heavy-black'], // #333333其实都是#3d3d3d
-    '74,74,74,1': TYPE_COLOR_RGBA['normal-black'], // #4A4A4A用#666666
-    '0,0,0,1': TYPE_COLOR_RGBA['heavy-black'], // #000000用#3d3d3d
-    '86,152,219,1': TYPE_COLOR_RGBA['type-color-link'] // #5698DB 用 #1ba4ff
+  const TYPE_COLOR_SIMPLE_MISTAKE_MAP = {
+    '51,51,51,1': 'heavy-black', // #333333其实都是#3d3d3d
+    '74,74,74,1': 'normal-black', // #4A4A4A用#666666
+    '0,0,0,1': 'heavy-black', // #000000用#3d3d3d
+    '86,152,219,1': 'type-color-link' // #5698DB 用 #1ba4ff
   };
+
+  // 字体颜色的纠错映射关系
+  const TYPE_COLOR_MISTAKE_MAP = {};
+
+  Object.keys(TYPE_COLOR_SIMPLE_MISTAKE_MAP).forEach(function (key) {
+    TYPE_COLOR_MISTAKE_MAP[key] = TYPE_COLOR_RGBA[TYPE_COLOR_SIMPLE_MISTAKE_MAP[key]];
+  });
 
   const TYPE_SIZE = { // 字号映射
     menu: 16,
@@ -49,15 +55,15 @@
       'theme-color-2': [95, 162, 226, 1, '收纳箱item, 计划和文集item'],
       'theme-color-3': [123, 189, 255, 1, 'switch3里选中按钮的颜色, 日程日历选中颜色以及小点颜色'],
       'theme-color-4': [86, 162, 223, 1, 'switch3背景色'],
-      'btn-color-1': [107, 200, 89, 1, '第一按钮颜色，默认是绿色'],
-      'btn-color-2': [86, 152, 219, 1, '第二按钮颜色，默认是蓝色'],
+      'btn-color-1': [109, 200, 91, 1, '第一按钮颜色，默认是绿色'],
+      'btn-color-2': [87, 153, 219, 1, '第二按钮颜色，默认是蓝色'],
       'btn-color-2-border': [120, 186, 255, 1, '第二按钮的边框色'],
       'btn-color-3': [27, 164, 255, 1, 'Radio组件, checkbox打钩，蓝色icon按钮初始色'],
       'btn-color-white': [255, 255, 255, 0.96, '按钮的白色字体'],
       'common-color-1': [248, 248, 248, 1, '第一常用色，如计划设置里 tab 那一行的背景色'],
       'common-color-2': [102, 102, 102, 1, '第二常用色，如倒三角颜色'],
       'common-color-3': [177, 177, 177, 1, '第三常用色，主要用于灰色icon按钮的默认色。之所以把这个色设置为常用色，是因为灰色一般不会随主题改变'],
-      'common-color-4': [204, 204, 204, 1, '第四常用色，比如灰色线框按钮，禁止按钮的边框色'],
+      'common-color-4': [213, 213, 213, 1, '第四常用色，比如灰色线框按钮，禁止按钮的边框色'],
       'common-color-5': [224, 224, 224, 1, '第五常用色，比如禁止按钮的背景色'],
       'common-color-6': [249, 249, 250, 1, '第六常用色，搜索框背景色，主体框架右下主体内容背景色，日程四象限背景色，很多偏灰一点点的背景色'],
       'common-color-7': [255, 255, 255, 1, '第七常用色，纯白色'],
@@ -78,13 +84,22 @@
     });
   });
 
-  // 主题色的纠错映射关系
-  const THEME_COLOR_MISTAKE_MAP = {
-    '102,200,80,1': THEME_COLOR.skin0['btn-color-1'].slice(0, 4),
-    '85,168,253,1': THEME_COLOR.skin0['btn-color-3'].slice(0, 4),
-    '176,176,176,1': THEME_COLOR.skin0['common-color-3'].slice(0, 4),
-    '0,0,0,0.04': THEME_COLOR.skin0['common-color-8'].slice(0, 4)
+  const THEME_COLOR_SIMPLE_MISTAKE_MAP = {
+    '102,200,80,1'   : 'btn-color-1',
+    '85,168,253,1'   : 'btn-color-3',
+    '176,176,176,1'  : 'common-color-3',
+    '0,0,0,0.04'     : 'common-color-8',
+    '107,200,89,1'   : 'btn-color-1',
+    '86,152,219,1'   : 'btn-color-2',
+    '204,204,204,1'  : 'common-color-4'
   };
+
+  // 主题色的纠错映射关系
+  const THEME_COLOR_MISTAKE_MAP = {};
+
+  Object.keys(THEME_COLOR_SIMPLE_MISTAKE_MAP).forEach(function (key) {
+    THEME_COLOR_MISTAKE_MAP[key] = THEME_COLOR.skin0[THEME_COLOR_SIMPLE_MISTAKE_MAP[key]].slice(0, 4)
+  });
 
   // bgc是background-color, bc是border-color
   const BUTTON = { // 如果某个按钮和另外一个按钮的配置一样，可以直接把value配置成两一个按钮的key
@@ -181,6 +196,11 @@
           color = [r, g, b, a];
         }
       });
+    }
+    if (color) {
+      if (THEME_COLOR_MISTAKE_MAP[color.join(',')]) {
+        color = THEME_COLOR_MISTAKE_MAP[color.join(',')];
+      }
     }
     return color;
   };
