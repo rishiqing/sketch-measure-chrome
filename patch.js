@@ -68,6 +68,8 @@
       'common-color-6': [249, 249, 250, 1, '第六常用色，搜索框背景色，主体框架右下主体内容背景色，日程四象限背景色，很多偏灰一点点的背景色'],
       'common-color-7': [255, 255, 255, 1, '第七常用色，纯白色'],
       'common-color-8': [244, 244, 244, 1, '第八常用色，用于白色item, hover时的背景色'],
+      'common-color-9': [234, 234, 234, 1, '第九常用色，用于灰色边框'],
+      'common-color-10': [212, 215, 218, 1, '第十常用色，用于滚动条背景色，进度条背景色'],
       'common-color-danger': [255, 122, 122, 1, '警告提示色，比如警告按钮背景色']
     }
   };
@@ -91,7 +93,11 @@
     '0,0,0,0.04'     : 'common-color-8',
     '107,200,89,1'   : 'btn-color-1',
     '86,152,219,1'   : 'btn-color-2',
-    '204,204,204,1'  : 'common-color-4'
+    '204,204,204,1'  : 'common-color-4',
+    '91,187,255,1'   : 'theme-color-3',
+    '240,240,240,1'  : 'common-color-10',
+    '239,239,239,1'  : 'common-color-10',
+    '211,215,217,1'  : 'common-color-10'
   };
 
   // 主题色的纠错映射关系
@@ -175,6 +181,7 @@
         }
       });
     }
+    console.log('color', color);
     if (color) {
       if (THEME_COLOR_MISTAKE_MAP[color.join(',')]) {
         color = THEME_COLOR_MISTAKE_MAP[color.join(',')];
