@@ -182,7 +182,6 @@
         }
       });
     }
-    console.log('color', color);
     if (color) {
       if (THEME_COLOR_MISTAKE_MAP[color.join(',')]) {
         color = THEME_COLOR_MISTAKE_MAP[color.join(',')];
@@ -351,6 +350,51 @@
     return [matchTip, sizeTip, nonMatchTip].join('');
   };
 
+  const layerBorder = function (layer) {
+    const borderColor = getBorderColor(layer);
+    let matchRgbList, matchAList; // rgb匹配rgb色， a是附加匹配透明度
+    if (borderColor) {
+      const rgb = borderColor.slice(0, 3).join(',');
+      const a = borderColor[3];
+      matchRgbList = THEME_COLOR_LIST.filter(item => item.rgb === rgb);
+      matchAList = matchRgbList.filter(item => item.a === a);
+    }
+    let matchTip = '', nonMatchTip = '';
+    if (matchAList && matchAList.length) {
+      matchTip = `
+        <div class="item" data-label="变量名">
+          <label >
+            <input type="text" value="$${matchAList[0].name}" readonly="readonly"/>
+          </label>
+        </div>
+        <div class="item">
+          <label data-label="颜色主要用途">
+            <textarea rows="3" readonly="readonly">${matchAList[0].desc}</textarea>
+          </label>
+        </div>
+      `;
+    } else if (matchRgbList && matchRgbList.length) {
+      const nonMatchList = ['匹配到的RGB有:' + matchRgbList.map(item => item.name).join(',')];
+      nonMatchList.push('但是透明度的值不匹配');
+      nonMatchTip = `
+        <div class="item">
+          <label data-label="匹配失败提醒">
+            <textarea rows="3" readonly="readonly">${nonMatchList.join('，')}</textarea>
+          </label>
+        </div>
+      `;
+    } else if (borderColor) {
+      nonMatchTip = `
+        <div class="item">
+          <label data-label="匹配失败提醒">
+            <textarea rows="3" readonly="readonly">该元素有边框，但系统暂无这种颜色，请联系产品进行确认</textarea>
+          </label>
+        </div>
+      `;
+    }
+    return [matchTip, nonMatchTip].join('');
+  };
+
   const renderInspectorPatch = function (html) {
     const layer = this.current.layers[this.selectedIndex];
     const _addList = [2, 0]; // 这里之所以有默认的2, 0, 是因为下面用apply方法把_addList添加到html的
@@ -365,6 +409,10 @@
       const button = layerButton(layer);
       if (button) {
         _addList.push(this.propertyType('<a style="color: #5698DB;">按钮匹配结果</a>', button));
+      }
+      const border = layerBorder(layer);
+      if (border) {
+        _addList.push(this.propertyType('<a style="color: #ee6723;">边框色匹配结果</a>', border))
       }
     }
     Array.prototype.splice.apply(html, _addList);
