@@ -71,7 +71,14 @@
       'common-color-8': [244, 244, 244, 1, '第八常用色，用于白色item, hover时的背景色'],
       'common-color-9': [234, 234, 234, 1, '第九常用色，用于灰色边框'],
       'common-color-10': [212, 215, 218, 1, '第十常用色，用于滚动条背景色，进度条背景色'],
-      'common-color-danger': [255, 122, 122, 1, '警告提示色，比如警告按钮背景色']
+      'common-color-danger': [255, 122, 122, 1, '警告提示色，比如警告按钮背景色'],
+      'common-mask': [0, 0, 0, 0.1, '收纳箱的输入框，和收纳箱item的placeHolder。'],
+      'common-quad-IE': [253,138,138, 1, '第一象限色'],
+      'common-quad-IU': [255,209,91, 1, '第二象限色'],
+      'common-quad-UE': [100,162,225, 1, '第三象限色'],
+      'common-quad-UU': [107,200,89, 1, '第四象限色'],
+      'common-select-item-border': [220,238,250, 1, '选中item的border色'],
+      'common-select-item-bg': [238,247,255, 1, '选中item的背景色']
     }
   };
   const THEME_COLOR_LIST = [];
