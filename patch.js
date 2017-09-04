@@ -76,6 +76,7 @@
       'common-color-danger':       [255, 122, 122, 1, '警告提示色，比如警告按钮背景色'],
       'common-mask':               [0, 0, 0, 0.1, '收纳箱的输入框，和收纳箱item的placeHolder。'],
       'common-modal-mask':         [0, 0, 0, 0.3, '模态框背景色'],
+      'common-color-big-icon':     [134,195,255, 1, '某些大图标颜色。比如归档界面的计划、子计划等图标'],
       'common-quad-IE':            [253,138,138, 1, '第一象限色'],
       'common-quad-IU':            [255,209,91, 1, '第二象限色'],
       'common-quad-UE':            [100,162,225, 1, '第三象限色'],
